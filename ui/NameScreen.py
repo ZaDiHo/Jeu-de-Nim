@@ -1,10 +1,10 @@
 from utils.ScreenUtils import *
-from ui.MainScreen import showMainScreen
-from common.NimGame import Player
-from client.NimClient import openSession
 
 def showNameScreen():
-    screen = Screen("Choix du pseudonyme")
+    from common.NimGame import Player
+    from client.NimClient import openSession
+
+    screen = Screen("Jeu de Nim - Choix du pseudonyme")
     background = Picture(0, 0, "ressources/images/background.png")
     background.resize(1280,720)
 
@@ -63,9 +63,3 @@ def showNameScreen():
         screen.clock.tick(60)
 
     pygame.quit()
-
-# Pause courte pour permettre à la fenêtre de se mettre à jour
-    pygame.time.delay(100)
-
-# Maintenant, après la boucle principale, vous pouvez appeler showMainScreen si nécessaire.
-    showMainScreen()

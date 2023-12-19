@@ -130,6 +130,15 @@ class Button:
         if self.click_handler:
             self.click_handler()
 
+    def setText(self, text):
+        """
+        Change le texte du bouton.
+
+        Paramètres:
+        * text: Nouveau texte à afficher
+        """
+        self.text = text.upper()
+
 
 class Area:
     """

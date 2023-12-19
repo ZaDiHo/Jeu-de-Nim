@@ -1,8 +1,9 @@
 from utils.ScreenUtils import *
 
 def showSettingsScreen():
+    from ui.SoloScreen import showSoloScreen
 
-    screen = Screen("Paramètres")
+    screen = Screen("Jeu de Nim - Paramètres")
     background = Picture(0, 0, "./ressources/images/background.png")
     background.resize(1280, 720)
     settingsText = Text(530, 60, "PARAMETRES", 70)
@@ -10,40 +11,49 @@ def showSettingsScreen():
     matchesNumberText = Text(475, 200, "Nombres\nallumettes", 30)
     maxMatchesNumberText = Text(475, 325, "Nombre prises\nmaxi", 30)
 
-    def handler_reset_button():
-        print("reset")
+    def resetButtonEvent():
+        numberOfMatches.setText("16")
+        numberOfMaxTeakeableMatches.setText("3")
 
-    def handler_validate_button():
+    def updateButtonEvent():
         print("validate")
 
-    def handler_return_button():
-        print("retour")
+    def backButtonEvent():
+        showSoloScreen()
+        pygame.quit()
 
-    def handler_removeMatches_button():
-        print("-1 matches")
-    def handler_addMatches_button():
-        print("+1 matches")
-    def handler_numberOfMatches_button():
-        print("x matches")
+    def removeMatchesButtonEvent():
+        currentValue = int(numberOfMatches.text)
+        if(currentValue > 1):
+            numberOfMatches.setText(str(currentValue - 1))
+    def addMatchesButtonEvent():
+        currentValue = int(numberOfMatches.text)
+        if(currentValue < 50):
+            numberOfMatches.setText(str(currentValue + 1))
+    
+    def nullEvent():
+        return None
 
-    def handler_removeMaxTakenMatches_button():
-        print("-1 matches")
-    def handler_addMaxTakenMatches_button():
-        print("+1 matches")
-    def handler_numberOfMaxTakenMatches_button():
-        print("x matches")
+    def removeMaxTakenMatchesButtonEvent():
+        currentValue = int(numberOfMaxTeakeableMatches.text)
+        if(currentValue > 1):
+            numberOfMaxTeakeableMatches.setText(str(currentValue - 1))
+    def addMaxTakenMatchesButtonEvent():
+        currentValue = int(numberOfMaxTeakeableMatches.text)
+        if(currentValue < 10):
+            numberOfMaxTeakeableMatches.setText(str(currentValue + 1))
 
-    resetButton = Button(675, 475, "Réinitialiser", handler_reset_button, 450, 40, "#FDF7E4", "#FAEED1", 20)
-    validateButton = Button(675, 550, "Valider", handler_validate_button, 450, 95, "#FDF7E4", "#FAEED1", 40)
-    returnButton = Button(525, 550, "<", handler_return_button, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    resetButton = Button(675, 475, "Réinitialiser", resetButtonEvent, 450, 40, "#FDF7E4", "#FAEED1", 20)
+    validateButton = Button(675, 550, "Valider", updateButtonEvent, 450, 95, "#FDF7E4", "#FAEED1", 40)
+    returnButton = Button(525, 550, "<", backButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
-    removeMatches = Button(780, 200, "-", handler_removeMatches_button, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    matchesNumber = Button(905, 200, "16", handler_numberOfMatches_button, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    addMatches = Button(1035, 200, "+", handler_addMatches_button, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    removeMatches = Button(780, 200, "-", removeMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMatches = Button(905, 200, "16", nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    addMatches = Button(1035, 200, "+", addMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
-    removeMaxTakenMatches = Button(780, 325, "-", handler_removeMaxTakenMatches_button, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    maxTakenMatches = Button(905, 325, "3", handler_numberOfMaxTakenMatches_button, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    addMaxTakenMatches = Button(1035, 325, "+", handler_addMaxTakenMatches_button, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    removeMaxTakenMatches = Button(780, 325, "-", removeMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMaxTeakeableMatches = Button(905, 325, "3", nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    addMaxTakenMatches = Button(1035, 325, "+", addMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     settingsArea = Area(425, 50, 750, 625)
 
@@ -52,17 +62,17 @@ def showSettingsScreen():
     screen.add_element(settingsText)
     screen.add_element(matchesNumberText)
     screen.add_element(maxMatchesNumberText)
+
     screen.add_element(resetButton)
     screen.add_element(validateButton)
     screen.add_element(returnButton)
 
     screen.add_element(removeMatches)
     screen.add_element(addMatches)
-    screen.add_element(matchesNumber)
+    screen.add_element(numberOfMatches)
 
     screen.add_element(removeMaxTakenMatches)
     screen.add_element(addMaxTakenMatches)
-    screen.add_element(maxTakenMatches)
+    screen.add_element(numberOfMaxTeakeableMatches)
 
     screen.run()
-
