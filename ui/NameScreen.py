@@ -41,6 +41,8 @@ def showNameScreen():
     screen.add_element(profil)
     screen.add_element(confirmButton)
 
+    
+
     # Boucle principale
     running = True
     while running:

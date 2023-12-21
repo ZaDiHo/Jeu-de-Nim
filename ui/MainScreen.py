@@ -4,12 +4,10 @@ def showMainScreen():
     from ui.NameScreen import showNameScreen
     from ui.SoloScreen import showSoloScreen
     from ui.LocalScreen import showLocalScreen
-
     screen = Screen("Jeu de Nim")
-
+    
     background = Picture(0,0, "./ressources/images/background.png")
     background.resize(1280,720)
-
     credit = Text(10,700,"Projet NSI 2023 réalisé par Adame et Thomas",10)
     title = Text(390,85,"JEU DE NIM",70,)
 

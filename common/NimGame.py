@@ -18,3 +18,34 @@ class Player:
         else:
             print("Erreur : Le socket client n'est pas défini.")
 
+
+matches = 16
+difficulty = 1
+maxNumberOfMatchesTakeable = 3
+
+def initValues():
+    global matches, difficulty, maxNumberOfMatchesTakeable
+    matches = 16
+    difficulty = 1
+    maxNumberOfMatchesTakeable = 3
+
+def setMatches(value):
+    global matches
+    matches = value
+
+def setDifficulty(value):
+    global difficulty
+    difficulty = value
+
+def setMaxNumberOfMatchesTakeable(value):
+    global maxNumberOfMatchesTakeable
+    maxNumberOfMatchesTakeable = value
+
+def getMatches():
+    return matches
+
+def getDifficulty():
+    return difficulty
+
+def getMaxNumberOfMatchesTakeable():
+    return maxNumberOfMatchesTakeable
