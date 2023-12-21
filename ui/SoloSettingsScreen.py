@@ -1,6 +1,6 @@
 from utils.ScreenUtils import *
 
-def showSettingsScreen():
+def showSoloSettingsScreen():
     from ui.SoloScreen import showSoloScreen
 
     screen = Screen("Jeu de Nim - Paramètres")

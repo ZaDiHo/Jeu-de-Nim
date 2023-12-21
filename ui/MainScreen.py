@@ -3,6 +3,7 @@ from utils.ScreenUtils import *
 def showMainScreen():
     from ui.NameScreen import showNameScreen
     from ui.SoloScreen import showSoloScreen
+    from ui.LocalScreen import showLocalScreen
 
     screen = Screen("Jeu de Nim")
 
@@ -19,7 +20,8 @@ def showMainScreen():
         pygame.quit()
         
     def localButtonEvent():
-        pass
+        showLocalScreen()
+        pygame.qui()
 
     def onlineButtonEvent():
         showNameScreen()
