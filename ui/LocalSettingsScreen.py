@@ -1,7 +1,7 @@
 from utils.ScreenUtils import *
 
 def showLocalSettingsScreen():
-    from ui.SoloScreen import showSoloScreen
+    from ui.LocalScreen import showLocalScreen
 
     screen = Screen("Jeu de Nim - Paramètres")
     background = Picture(0, 0, "./ressources/images/background.png")
@@ -19,7 +19,7 @@ def showLocalSettingsScreen():
         print("validate")
 
     def backButtonEvent():
-        showSoloScreen()
+        showLocalScreen()
         pygame.quit()
 
     def removeMatchesButtonEvent():

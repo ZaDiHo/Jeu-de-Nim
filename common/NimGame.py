@@ -17,3 +17,4 @@ class Player:
             self.client_socket.send(packet.encode('utf-8'))
         else:
             print("Erreur : Le socket client n'est pas défini.")
+
