@@ -26,7 +26,7 @@ mode = 1 #1 = Solo | 2 = Local | 3 = Online
 
 def initValues():
     global matches, difficulty, maxNumberOfMatchesTakeable, mode
-    matches = 16
+    matches = 21
     difficulty = 1
     maxNumberOfMatchesTakeable = 3
     mode = 1

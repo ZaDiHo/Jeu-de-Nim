@@ -9,6 +9,7 @@ def showMatchScreen(screen):
     from common.NimGame import getDifficulty
     from common.NimGame import getMode
     from ui.MainScreen import showMainScreen
+    from common.NimGame import initValues
 
     screen.clear_elements()
     background = Picture(0, 0, "./ressources/images/background.png")
@@ -19,48 +20,96 @@ def showMatchScreen(screen):
 
     def nullEvent():
         return None
-    
+
+    # Variable pour suivre le tour actuel
+    current_turn = 1  # 1 pour le joueur, 0 pour l'IA
+
+    def calculateNimSum():
+        matches = getMatches()
+        max_takeable = getMaxNumberOfMatchesTakeable()
+
+        if matches % (max_takeable + 1) == 0:
+            return 0
+        else:
+            return matches % (max_takeable + 1)
+
     def botTurn():
-        if(getMode() == 1):
-            if getDifficulty() == 1:#Easy mode
+        nonlocal current_turn
+        if getMode() == 1:
+            if getDifficulty() == 1:  # Easy mode
                 if getMatches() > 0:
                     matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = str(getMatches())
-            elif getDifficulty() == 2: #Medium mode
-                pass
-            else: #Hard mode
-                pass
-            
+                    checkGameResult()
+                    current_turn = 1  # Changer le tour après que l'IA a joué
+            elif getDifficulty() == 2:  # Medium mode
+                if getMatches() > 0:
+                    # Utiliser une approche probabiliste
+                    if random.random() < 0.7:  # 70% de chances de jouer de manière aléatoire
+                        matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
+                    else:
+                        # Calculer le nim-sum
+                        nim_sum = calculateNimSum()
+
+                        # Si le nim-sum est non nul, jouer de manière intelligente
+                        if nim_sum != 0:
+                            matchesTaken = getMatches() % (getMaxNumberOfMatchesTakeable() + 1)
+                        else:
+                            # Sinon, jouer de manière aléatoire
+                            matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
+
+                    setMatches(getMatches() - matchesTaken)
+                    matchesNumber.text = str(getMatches())
+                    checkGameResult()
+                    current_turn = 1  # Changer le tour après que l'IA a joué
+            else:  # Hard mode
+                if getMatches() > 0:
+                    if getMatches() == 1:
+                        matchesTaken = 1
+                    else:
+                        matchesTaken = getMatches() % (getMaxNumberOfMatchesTakeable() + 1)
+
+                        # Si nim-sum est 0, jouer de manière aléatoire
+                        if calculateNimSum() == 0:
+                            matchesTaken = random.randint(1, min(getMatches(), getMaxNumberOfMatchesTakeable()))
+
+                    setMatches(getMatches() - matchesTaken)
+                    matchesNumber.text = str(getMatches())
+                    checkGameResult()
+                    current_turn = 1  # Changer le tour après que l'IA a joué
+
+    def homeButtonEvent():
+        initValues()
+        showMainScreen(screen)
 
     def checkGameResult():
         if getMatches() == 0:
-            if title.text == "Tour de l'IA":
+            accueil = Button(475, 550, "Accueil", homeButtonEvent)
+            menuArea = Area(40, 525, 1200, 150)
+            if current_turn == 0:  # Tour de l'IA
                 title.setText("Gagné ! :D")
+                screen.add_element(menuArea)
+                screen.add_element(accueil)
             else:
                 title.setText("Perdu ! :(")
-
+                screen.add_element(menuArea)
+                screen.add_element(accueil)
 
     def backButtonEvent():
+        initValues()
         showMainScreen(screen)
 
     def validateButtonEvent():
-        if(title.text == "A Votre Tour !"):
+        nonlocal current_turn
+        if title.text == "A Votre Tour !":
             playerMatchesTaken = int(matchesValue.text)
             setMatches(getMatches() - playerMatchesTaken)
             matchesNumber.text = str(getMatches())
             matchesValue.text = "1"
             checkGameResult()
-            title.setText("Tour de l'IA")
-            screen.run()
+            current_turn = 0  # Changer le tour après que le joueur a joué
             botTurn()
-            checkGameResult()
-            time.sleep(2)
-            title.setText("A Votre Tour !")
-            screen.run()
-        else:
-            return
-
 
     def removeMaxTakenMatchesButtonEvent():
         currentValue = int(matchesValue.text)
@@ -72,8 +121,6 @@ def showMatchScreen(screen):
         if currentValue < getMaxNumberOfMatchesTakeable():
             if currentValue < getMatches():
                 matchesValue.setText(str(currentValue + 1))
-
-
 
     increaseButton = Button(740, 550, "+", addMaxTakenMatchesButtonEvent, 95, 95)
     matchesValue = Button(600, 550, "1", nullEvent, 95, 95)
@@ -94,5 +141,3 @@ def showMatchScreen(screen):
     screen.add_element(matchesNumber)
 
     screen.run()
-
-

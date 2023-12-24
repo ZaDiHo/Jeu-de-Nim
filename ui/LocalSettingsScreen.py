@@ -12,7 +12,7 @@ def showLocalSettingsScreen(screen):
     maxMatchesNumberText = Text(475, 325, "Nombre prises\nmaxi", 30)
 
     def resetButtonEvent():
-        numberOfMatches.setText("16")
+        numberOfMatches.setText("21")
         numberOfMaxTeakeableMatches.setText("3")
 
     def updateButtonEvent():

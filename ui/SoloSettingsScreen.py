@@ -18,7 +18,7 @@ def showSoloSettingsScreen(screen):
     difficultyText = Text(475, 145, "Difficulté", 30)
 
     def resetButtonEvent():
-        numberOfMatches.setText("16")
+        numberOfMatches.setText("21")
         numberOfMaxTeakeableMatches.setText("3")
         difficulty.setText("1")
 
