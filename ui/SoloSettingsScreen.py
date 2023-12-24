@@ -3,8 +3,11 @@ from utils.ScreenUtils import *
 def showSoloSettingsScreen(screen):
     from ui.SoloScreen import showSoloScreen
     from common.NimGame import setMatches
-    from common.NimGame import getMatches
     from common.NimGame import setMaxNumberOfMatchesTakeable
+    from common.NimGame import setDifficulty
+    from common.NimGame import getDifficulty
+    from common.NimGame import getMatches
+    from common.NimGame import getMaxNumberOfMatchesTakeable
     screen.clear_elements()
     background = Picture(0, 0, "./ressources/images/background.png")
     background.resize(1280, 720)
@@ -20,9 +23,9 @@ def showSoloSettingsScreen(screen):
         difficulty.setText("1")
 
     def updateButtonEvent():
-
         setMatches(int(numberOfMatches.text))
         setMaxNumberOfMatchesTakeable(int(numberOfMaxTeakeableMatches.text))
+        setDifficulty(int(difficulty.text))
         showSoloScreen(screen)
 
     def backButtonEvent():
@@ -63,15 +66,15 @@ def showSoloSettingsScreen(screen):
     returnButton = Button(525, 565, "<", backButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     decreaseDifficulty = Button(780, 120, "-", decreaseDifficultyButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    difficulty = Button(905, 120, "1", nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    difficulty = Button(905, 120, str(getDifficulty()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
     increaseDifficulty = Button(1035, 120, "+", increaseDifficultyButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     removeMatches = Button(780, 240, "-", removeMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    numberOfMatches = Button(905, 240, "16", nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMatches = Button(905, 240, str(getMatches()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
     addMatches = Button(1035, 240, "+", addMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     removeMaxTakenMatches = Button(780, 365, "-", removeMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    numberOfMaxTeakeableMatches = Button(905, 365, "3", nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMaxTeakeableMatches = Button(905, 365, str(getMaxNumberOfMatchesTakeable()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
     addMaxTakenMatches = Button(1035, 365, "+", addMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     settingsArea = Area(425, 10, 750, 690)

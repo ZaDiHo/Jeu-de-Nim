@@ -22,12 +22,22 @@ class Player:
 matches = 16
 difficulty = 1
 maxNumberOfMatchesTakeable = 3
+mode = 1 #1 = Solo | 2 = Local | 3 = Online
 
 def initValues():
-    global matches, difficulty, maxNumberOfMatchesTakeable
+    global matches, difficulty, maxNumberOfMatchesTakeable, mode
     matches = 16
     difficulty = 1
     maxNumberOfMatchesTakeable = 3
+    mode = 1
+
+def setMode(value):
+    global mode
+    mode = value
+
+def getMode():
+    global mode
+    return mode
 
 def setMatches(value):
     global matches
@@ -42,10 +52,13 @@ def setMaxNumberOfMatchesTakeable(value):
     maxNumberOfMatchesTakeable = value
 
 def getMatches():
+    global matches
     return matches
 
 def getDifficulty():
+    global difficulty
     return difficulty
 
 def getMaxNumberOfMatchesTakeable():
+    global maxNumberOfMatchesTakeable
     return maxNumberOfMatchesTakeable

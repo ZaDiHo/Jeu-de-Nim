@@ -1,17 +1,14 @@
 from utils.ScreenUtils import *
+import time
 import random
 
 def showMatchScreen(screen):
-    from ui.SoloScreen import showSoloScreen
-    from ui.SoloSettingsScreen import showSoloSettingsScreen
     from common.NimGame import getMaxNumberOfMatchesTakeable
-    from common.NimGame import setMaxNumberOfMatchesTakeable
     from common.NimGame import getMatches
     from common.NimGame import setMatches
     from common.NimGame import getDifficulty
-    from common.NimGame import setDifficulty
+    from common.NimGame import getMode
     from ui.MainScreen import showMainScreen
-    from ui.LoadingScreen import showLoadingScreen
 
     screen.clear_elements()
     background = Picture(0, 0, "./ressources/images/background.png")
@@ -24,35 +21,45 @@ def showMatchScreen(screen):
         return None
     
     def botTurn():
-        pygame.time.wait(1000)
-        if getDifficulty() == 1:
-            if getMatches() > 0:
-                matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
-                setMatches(getMatches() - matchesTaken)
-                matchesNumber.text = str(getMatches())
-                #title.setText("A Votre Tour !")
-                pygame.display.flip()
-    
+        if(getMode() == 1):
+            if getDifficulty() == 1:#Easy mode
+                if getMatches() > 0:
+                    matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
+                    setMatches(getMatches() - matchesTaken)
+                    matchesNumber.text = str(getMatches())
+            elif getDifficulty() == 2: #Medium mode
+                pass
+            else: #Hard mode
+                pass
+            
+
     def checkGameResult():
         if getMatches() == 0:
             if title.text == "Tour de l'IA":
-                title.setText("Vous avez gagné !")
+                title.setText("Gagné ! :D")
             else:
-                title.setText("L'IA a gagné !")
+                title.setText("Perdu ! :(")
 
 
     def backButtonEvent():
         showMainScreen(screen)
 
     def validateButtonEvent():
-        playerMatchesTaken = int(matchesValue.text)
-        setMatches(getMatches() - playerMatchesTaken)
-        matchesNumber.text = str(getMatches())
-        matchesValue.text = "1"
-        checkGameResult()
-        title.setText("Tour de l'IA")
-        botTurn()
-        checkGameResult()
+        if(title.text == "A Votre Tour !"):
+            playerMatchesTaken = int(matchesValue.text)
+            setMatches(getMatches() - playerMatchesTaken)
+            matchesNumber.text = str(getMatches())
+            matchesValue.text = "1"
+            checkGameResult()
+            title.setText("Tour de l'IA")
+            screen.run()
+            botTurn()
+            checkGameResult()
+            time.sleep(2)
+            title.setText("A Votre Tour !")
+            screen.run()
+        else:
+            return
 
 
     def removeMaxTakenMatchesButtonEvent():

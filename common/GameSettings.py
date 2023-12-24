@@ -6,6 +6,4 @@ maxMatchesTaken = 3 # Default value : 3
 firstPlayerId = generateId(5)
 firstPlayerName = "PLAYER_" + "".join(map(str, firstPlayerId))
 
-secondPlayerId = 
-
 player = ""
