@@ -36,13 +36,18 @@ def showMatchScreen(screen):
     def botTurn():
         nonlocal current_turn
         if getMode() == 1:
+            # Assuming you have a variable representing the text for the turn
+            turnText = "Players Turn"  # Initialize with the default value
             if getDifficulty() == 1:  # Easy mode
                 if getMatches() > 0:
                     matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = str(getMatches())
                     checkGameResult()
+                    # Update the turn text after the bot has made its move
+                    turnText = "Bots Turn"
                     current_turn = 1  # Changer le tour après que l'IA a joué
+                    
             elif getDifficulty() == 2:  # Medium mode
                 if getMatches() > 0:
                     # Utiliser une approche probabiliste
@@ -87,12 +92,16 @@ def showMatchScreen(screen):
         if getMatches() == 0:
             accueil = Button(475, 550, "Accueil", homeButtonEvent)
             menuArea = Area(40, 525, 1200, 150)
+            looseText = Text(515, 35, "Perdu ! :(",50, )
+            winText = Text(515, 35, "Gagné ! :D",50, )
             if current_turn == 0:  # Tour de l'IA
-                title.setText("Gagné ! :D")
+                title.setText("")
+                screen.add_element(winText)
                 screen.add_element(menuArea)
                 screen.add_element(accueil)
             else:
-                title.setText("Perdu ! :(")
+                title.setText("")
+                screen.add_element(winText)
                 screen.add_element(menuArea)
                 screen.add_element(accueil)
 
