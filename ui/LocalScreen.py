@@ -1,10 +1,10 @@
 from utils.ScreenUtils import *
     
-def showLocalScreen():
+def showLocalScreen(screen):
     from ui.MainScreen import showMainScreen
     from ui.LocalSettingsScreen import showLocalSettingsScreen
 
-    screen = Screen("Jeu de Nim - Mode local")
+    screen.clear_elements()
 
     background = Picture(0,0, "./ressources/images/background.png")
     background.resize(1280,720)
@@ -18,15 +18,13 @@ def showLocalScreen():
     nameArea = Area(100, 205, 500, 250)
 
     def settingsButtonEvent():
-        showLocalSettingsScreen()
-        pygame.quit()
+        showLocalSettingsScreen(screen)
         
     def startButtonEvent():
         pass
 
     def backButtonEvent():
-        showMainScreen()
-        pygame.quit()
+        showMainScreen(screen)
 
     settingsButton = Button(710,190,"Parametres",settingsButtonEvent,425,105)
     startButton = Button(710,325,"Lancer !",startButtonEvent,425,105)

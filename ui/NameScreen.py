@@ -1,10 +1,10 @@
 from utils.ScreenUtils import *
 
-def showNameScreen():
+def showNameScreen(screen):
     from common.NimGame import Player
     from client.NimClient import openSession
 
-    screen = Screen("Jeu de Nim - Choix du pseudonyme")
+    screen.clear_elements()
     background = Picture(0, 0, "ressources/images/background.png")
     background.resize(1280,720)
 

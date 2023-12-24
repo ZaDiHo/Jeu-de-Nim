@@ -2,11 +2,11 @@ import random
 
 from utils.ScreenUtils import *
 
-def showLoadingScreen():
+def showLoadingScreen(screen):
     from ui.SoloSettingsScreen import Screen
 
 
-    screen = Screen("Jeu de Nim - Loading Screen")
+    screen.clear_elements()
     background = Picture(0,0, "./ressources/images/background.png")
     background.resize(1280,720)
 

@@ -1,11 +1,11 @@
 from utils.ScreenUtils import *
 
-def showSoloSettingsScreen():
+def showSoloSettingsScreen(screen):
     from ui.SoloScreen import showSoloScreen
     from common.NimGame import setMatches
     from common.NimGame import getMatches
     from common.NimGame import setMaxNumberOfMatchesTakeable
-    screen = Screen("Jeu de Nim - Paramètres")
+    screen.clear_elements()
     background = Picture(0, 0, "./ressources/images/background.png")
     background.resize(1280, 720)
     settingsText = Text(530, 25, "PARAMETRES", 70)
@@ -23,14 +23,10 @@ def showSoloSettingsScreen():
 
         setMatches(int(numberOfMatches.text))
         setMaxNumberOfMatchesTakeable(int(numberOfMaxTeakeableMatches.text))
-        showSoloScreen()
-        
-
-        pygame.quit()
+        showSoloScreen(screen)
 
     def backButtonEvent():
-        showSoloScreen()
-        pygame.quit()
+        showSoloScreen(screen)
 
     def removeMatchesButtonEvent():
         currentValue = int(numberOfMatches.text)

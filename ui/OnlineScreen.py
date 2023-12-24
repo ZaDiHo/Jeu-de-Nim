@@ -3,9 +3,9 @@ from utils.ScreenUtils import *
 def handler_button():
     print("Button Clicked")
     
-def showOnlineScreen():
+def showOnlineScreen(screen):
 
-    screen = Screen("Jeu de Nim - Mode Multijoueur")
+    screen.clear_elements()
     background = Picture(0,0, "./ressources/images/background.png")
     background.resize(1280,720)
     title = Text(755,85,"ENLIGNE",70,)

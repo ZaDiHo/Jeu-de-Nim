@@ -1,10 +1,10 @@
 from utils.ScreenUtils import *
     
-def showSoloScreen():
+def showSoloScreen(screen):
     from ui.MainScreen import showMainScreen
     from ui.SoloSettingsScreen import showSoloSettingsScreen
     from ui.MatchScreen import showMatchScreen
-    screen = Screen("Jeu de Nim - Mode solo")
+    screen.clear_elements()
 
     background = Picture(0,0, "./ressources/images/background.png")
     background.resize(1280,720)
@@ -13,15 +13,13 @@ def showSoloScreen():
     menuArea = Area(350,75,550,550)
 
     def settingsButtonEvent():
-        showSoloSettingsScreen()
-        pygame.quit()
+        showSoloSettingsScreen(screen)
         
     def startButtonEvent():
-        showMatchScreen()
+        showMatchScreen(screen)
 
     def backButtonEvent():
-        showMainScreen()
-        pygame.quit()
+        showMainScreen(screen)
 
     settingsButton = Button(410,190,"Parametres",settingsButtonEvent,425,105)
     startButton = Button(410,325,"Lancer !",startButtonEvent,425,105)

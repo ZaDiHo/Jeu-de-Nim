@@ -1,10 +1,10 @@
 from utils.ScreenUtils import *
 
-def showMainScreen():
+def showMainScreen(screen):
     from ui.NameScreen import showNameScreen
     from ui.SoloScreen import showSoloScreen
     from ui.LocalScreen import showLocalScreen
-    screen = Screen("Jeu de Nim")
+    screen.clear_elements()
     
     background = Picture(0,0, "./ressources/images/background.png")
     background.resize(1280,720)
@@ -14,16 +14,13 @@ def showMainScreen():
     menuArea = Area(350,75,550,550)
 
     def soloButtonEvent():
-        showSoloScreen()
-        pygame.quit()
+        showSoloScreen(screen)
         
     def localButtonEvent():
-        showLocalScreen()
-        pygame.qui()
+        showLocalScreen(screen)
 
     def onlineButtonEvent():
-        showNameScreen()
-        pygame.quit()
+        showNameScreen(screen)
 
     soloButton = Button(410,190,"Solo",soloButtonEvent,425,105)
     localButton = Button(410,325,"Local",localButtonEvent,425,105)

@@ -28,6 +28,12 @@ class Screen:
         pygame.display.set_caption(title)
         self.clock = pygame.time.Clock()
 
+    def clear_elements(self):
+        """
+        Supprime tous les éléments de la fenêtre.
+        """
+        self.elements = []
+
     def add_element(self, element):
         """
         Ajoute un élément à la fenêtre.
