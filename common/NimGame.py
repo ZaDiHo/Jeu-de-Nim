@@ -54,7 +54,7 @@ def setMode(value):
     Définit le mode de jeu
 
     Paramètres:
-    * value: la valeur du mode de jeu (1 = Solo | 2 = Local | 3 = Online)
+    * value: la valeur du mode de jeu (1 = Solo | 2 = Local)
     """
     global mode
     mode = value

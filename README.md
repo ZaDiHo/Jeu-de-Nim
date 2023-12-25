@@ -24,14 +24,24 @@ extension, vous devrez le signaler rapidement au professeur afin d’identifier 
 quel port utilisé pour communiquer ? ....)
 - Proposer de jouer à plus de deux joueurs.
 
+### Extensions réalisées :
+- Faire une interface graphique
+- Choisir un niveau d'intelligence pour l'ordinateur (facile, moyen, difficile). En mode difficile,
+l'ordinateur doit toujours gagner, si c'est possible.
+- Proposer de faire varier les paramètres du jeu (nombre d'allumettes initial, nombre d'allumettes
+maximum à enlever par tour, etc.).
+
 ## Prérequis pour utiliser ce code:
-**Joueur :**
+**Avoir installé Python 3.11 ou plus et PIP. (Développé sous Python 3.11.3, des problèmes d'affichages peuvent survenir sur des version antérieures.)**
 ```bash
 pip install pygame
 ```
 
-**Serveur :**
-Python 3 avec ce script [Bientot disponible](https://github.com/ZaDiHo)
+## Lancer le jeu:
+**Lancez un terminal à la racine du serveur puis executez la commande suivant:**
+```
+py main.py
+```
 
 ## License
 
