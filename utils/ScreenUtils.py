@@ -56,15 +56,15 @@ class Screen:
         """
         Lance la fenêtre.
         """
-        running = True
-        while running:
+        while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
+                    exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     for element in self.elements:
                         if isinstance(element, Button) and element.isMouseOver():
                             element.handle_click()
+
 
             self.screen.fill((255, 255, 255))
 
