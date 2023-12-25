@@ -4,6 +4,7 @@ def showMainScreen(screen):
     from ui.NameScreen import showNameScreen
     from ui.SoloScreen import showSoloScreen
     from ui.LocalScreen import showLocalScreen
+    from common.NimGame import setMode
     screen.clear_elements()
     
     background = Picture(0,0, "./ressources/images/background.png")
@@ -14,12 +15,15 @@ def showMainScreen(screen):
     menuArea = Area(350,75,550,550)
 
     def soloButtonEvent():
+        setMode(1)
         showSoloScreen(screen)
         
     def localButtonEvent():
+        setMode(2)
         showLocalScreen(screen)
 
     def onlineButtonEvent():
+        setMode(3)
         showNameScreen(screen)
 
     soloButton = Button(410,190,"Solo",soloButtonEvent,425,105)

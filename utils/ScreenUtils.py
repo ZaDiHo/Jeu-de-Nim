@@ -180,6 +180,44 @@ class Area:
         pygame.draw.rect(screen, self.shadow_color, shadow_rect)
         pygame.draw.rect(screen, self.background_color, self.rect)
 
+
+class Matche:
+    """
+    Class permettant de créer des allumettes pour une fenêtre Pygame.
+
+    Paramètres:
+    * x: Position x de l'allumette
+    * y: Position y de l'allumette
+    * width: Largeur de l'allumette
+    * height: Hauteur de l'allumette
+    * background_color: Couleur de fond de l'allumette (défaut #DED0B6)
+
+    Méthodes:
+    * draw: Dessine l'allumette
+    * destroy : Détruit l'allumette
+    """
+    def __init__(self, x, y, width, height, background_color="#DED0B6"):
+        """
+        Initialise l'allumette.
+        """
+        self.rect = pygame.Rect(x, y, width, height)
+        self.background_color = pygame.Color(background_color)
+
+    def draw(self, screen):
+        """
+        Dessine l'allumette.
+        
+        Paramètres:
+        * screen: Fenêtre sur laquelle dessiner l'allumette
+        """
+        pygame.draw.rect(screen, self.background_color, self.rect)
+
+    def destroy(self):
+        """
+        Détruit l'allumette.
+        """
+        self.rect = pygame.Rect(0, 0, 0, 0)
+
 class Text:
     """
     Class permettant d'ajouter du texte à une fenêtre Pygame rapidement.
@@ -271,6 +309,9 @@ class InputBox:
         self.text = ''
         self.active = False
         self.max_length = 12  # Longueur maximale du texte
+
+    def set_text(self, text):
+        self.text = text
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:

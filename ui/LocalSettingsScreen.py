@@ -2,6 +2,10 @@ from utils.ScreenUtils import *
 
 def showLocalSettingsScreen(screen):
     from ui.LocalScreen import showLocalScreen
+    from common.NimGame import getMaxNumberOfMatchesTakeable
+    from common.NimGame import getMatches
+    from common.NimGame import setMaxNumberOfMatchesTakeable
+    from common.NimGame import setMatches
 
     screen.clear_elements()
     background = Picture(0, 0, "./ressources/images/background.png")
@@ -16,7 +20,9 @@ def showLocalSettingsScreen(screen):
         numberOfMaxTeakeableMatches.setText("3")
 
     def updateButtonEvent():
-        print("validate")
+        setMatches(int(numberOfMatches.text))
+        setMaxNumberOfMatchesTakeable(int(numberOfMaxTeakeableMatches.text))
+        showLocalScreen(screen)
 
     def backButtonEvent():
         showLocalScreen(screen)
@@ -47,11 +53,11 @@ def showLocalSettingsScreen(screen):
     returnButton = Button(525, 550, "<", backButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     removeMatches = Button(780, 200, "-", removeMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    numberOfMatches = Button(905, 200, "16", nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMatches = Button(905, 200, str(getMatches()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
     addMatches = Button(1035, 200, "+", addMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     removeMaxTakenMatches = Button(780, 325, "-", removeMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    numberOfMaxTeakeableMatches = Button(905, 325, "3", nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMaxTeakeableMatches = Button(905, 325, str(getMaxNumberOfMatchesTakeable()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
     addMaxTakenMatches = Button(1035, 325, "+", addMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     settingsArea = Area(425, 50, 750, 625)

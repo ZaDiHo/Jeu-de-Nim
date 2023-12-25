@@ -1,5 +1,4 @@
 from utils.ScreenUtils import *
-import time
 import random
 
 def showMatchScreen(screen):
@@ -8,21 +7,30 @@ def showMatchScreen(screen):
     from common.NimGame import setMatches
     from common.NimGame import getDifficulty
     from common.NimGame import getMode
+    from common.NimGame import getFirstPlayerName
+    from common.NimGame import getSecondPlayerName
     from ui.MainScreen import showMainScreen
     from common.NimGame import initValues
 
     screen.clear_elements()
     background = Picture(0, 0, "./ressources/images/background.png")
     background.resize(1280, 720)
-    title = Text(380, 25, "A Votre Tour !", 70)
+    if(getMode() == 1):
+        current_turn = 1
+        sideArea = Area(360, 25, 600, 100)
+        title = Text(380, 25, "A Votre Tour !", 70)
+    elif(getMode() == 2):
+        current_turn = random.randint(0,1)
+        sideArea = Area(150, 25, 1000, 100)
+        if(current_turn == 0):
+            title = Text(190, 35, ("Au tour de " + getSecondPlayerName()), 50)
+        else:
+            title = Text(190, 35, ("Au tour de " + getFirstPlayerName()), 50)
     mainArea = Area(40, 175, 1200, 500)
-    sideArea = Area(360, 25, 600, 100)
+    
 
     def nullEvent():
         return None
-
-    # Variable pour suivre le tour actuel
-    current_turn = 1  # 1 pour le joueur, 0 pour l'IA
 
     def calculateNimSum():
         matches = getMatches()
@@ -36,16 +44,12 @@ def showMatchScreen(screen):
     def botTurn():
         nonlocal current_turn
         if getMode() == 1:
-            # Assuming you have a variable representing the text for the turn
-            turnText = "Players Turn"  # Initialize with the default value
             if getDifficulty() == 1:  # Easy mode
                 if getMatches() > 0:
                     matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = str(getMatches())
                     checkGameResult()
-                    # Update the turn text after the bot has made its move
-                    turnText = "Bots Turn"
                     current_turn = 1  # Changer le tour après que l'IA a joué
                     
             elif getDifficulty() == 2:  # Medium mode
@@ -82,28 +86,33 @@ def showMatchScreen(screen):
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = str(getMatches())
                     checkGameResult()
-                    current_turn = 1  # Changer le tour après que l'IA a joué
+                    current_turn = 1
 
     def homeButtonEvent():
         initValues()
         showMainScreen(screen)
 
     def checkGameResult():
-        if getMatches() == 0:
-            accueil = Button(475, 550, "Accueil", homeButtonEvent)
-            menuArea = Area(40, 525, 1200, 150)
-            looseText = Text(515, 35, "Perdu ! :(",50, )
-            winText = Text(515, 35, "Gagné ! :D",50, )
-            if current_turn == 0:  # Tour de l'IA
-                title.setText("")
-                screen.add_element(winText)
+            if getMatches() == 0:
+                accueil = Button(475, 550, "Accueil", homeButtonEvent)
+                menuArea = Area(40, 525, 1200, 150)
+                title.setText(" ")
                 screen.add_element(menuArea)
                 screen.add_element(accueil)
-            else:
-                title.setText("")
-                screen.add_element(winText)
-                screen.add_element(menuArea)
-                screen.add_element(accueil)
+                if(getMode() == 1):
+                    looseText = Text(515, 35, "Perdu ! :(",50, )
+                    winText = Text(515, 35, "Gagné ! :D",50, )
+                    if current_turn == 0:
+                        screen.add_element(winText)
+                    else:
+                        screen.add_element(looseText)
+                elif(getMode() == 2):
+                    if(current_turn == 0):
+                        winText = Text(190, 35, ("Victoire de " + getFirstPlayerName()),50)
+                    else:
+                        winText = Text(190, 35, ("Victoire de " + getSecondPlayerName()),50)
+                    screen.add_element(winText)
+                
 
     def backButtonEvent():
         initValues()
@@ -111,14 +120,29 @@ def showMatchScreen(screen):
 
     def validateButtonEvent():
         nonlocal current_turn
-        if title.text == "A Votre Tour !":
+        if(getMode() == 1):
+            if title.text == "A Votre Tour !":
+                playerMatchesTaken = int(matchesValue.text)
+                setMatches(getMatches() - playerMatchesTaken)
+                matchesNumber.text = str(getMatches())
+                matchesValue.text = "1"
+                checkGameResult()
+                current_turn = 2 # Changer le tour après que le joueur a joué
+                botTurn()
+        elif(getMode() == 2):
             playerMatchesTaken = int(matchesValue.text)
             setMatches(getMatches() - playerMatchesTaken)
             matchesNumber.text = str(getMatches())
             matchesValue.text = "1"
-            checkGameResult()
-            current_turn = 0  # Changer le tour après que le joueur a joué
-            botTurn()
+            if(current_turn == 1):
+                title.text = ("Au tour de " + getSecondPlayerName())
+                checkGameResult()
+                current_turn = 0
+            else:
+                title.text = ("Au tour de " + getFirstPlayerName())
+                checkGameResult()
+                current_turn = 1
+            
 
     def removeMaxTakenMatchesButtonEvent():
         currentValue = int(matchesValue.text)

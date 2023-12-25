@@ -23,17 +23,39 @@ matches = 16
 difficulty = 1
 maxNumberOfMatchesTakeable = 3
 mode = 1 #1 = Solo | 2 = Local | 3 = Online
+firstPlayerName = "PLAYER_1"
+secondPlayerName = "PLAYER_2"
+
+
 
 def initValues():
-    global matches, difficulty, maxNumberOfMatchesTakeable, mode
+    global matches, difficulty, maxNumberOfMatchesTakeable, mode, firstPlayerName, secondPlayerName
     matches = 21
     difficulty = 1
     maxNumberOfMatchesTakeable = 3
     mode = 1
+    firstPlayerName = "PLAYER_1"
+    secondPlayerName = "PLAYER_2"
 
 def setMode(value):
     global mode
     mode = value
+
+def getFirstPlayerName():
+    global firstPlayerName
+    return firstPlayerName
+
+def getSecondPlayerName():
+    global secondPlayerName
+    return secondPlayerName
+
+def setFirstPlayerName(value):
+    global firstPlayerName
+    firstPlayerName = value
+
+def setSecondPlayerName(value):
+    global secondPlayerName
+    secondPlayerName = value
 
 def getMode():
     global mode
