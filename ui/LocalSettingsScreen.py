@@ -71,12 +71,6 @@ def showLocalSettingsScreen(screen):
         currentValue = int(numberOfMatches.text)
         if(currentValue < 50):
             numberOfMatches.setText(str(currentValue + 1))
-    
-    def nullEvent():
-        """
-        Ne fait rien
-        """
-        return None
 
     def removeMaxTakenMatchesButtonEvent():
         """
@@ -100,11 +94,11 @@ def showLocalSettingsScreen(screen):
     returnButton = Button(525, 550, "<", backButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     removeMatches = Button(780, 200, "-", removeMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    numberOfMatches = Button(905, 200, str(getMatches()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMatches = Button(905, 200, str(getMatches()), lambda: None, 95, 95, "#FDF7E4", "#FAEED1", 40)
     addMatches = Button(1035, 200, "+", addMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     removeMaxTakenMatches = Button(780, 325, "-", removeMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    numberOfMaxTeakeableMatches = Button(905, 325, str(getMaxNumberOfMatchesTakeable()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMaxTeakeableMatches = Button(905, 325, str(getMaxNumberOfMatchesTakeable()), lambda: None, 95, 95, "#FDF7E4", "#FAEED1", 40)
     addMaxTakenMatches = Button(1035, 325, "+", addMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     # Ajout des éléments à l'écran

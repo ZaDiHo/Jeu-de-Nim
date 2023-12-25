@@ -24,7 +24,7 @@ def showMainScreen(screen):
     background.resize(1280,720)
 
     # Création des éléments
-    credit = Text(10,700,"Projet NSI 2023 réalisé par Adame et Thomas",10)
+    credit = Text(315,680,"Projet NSI 2023 réalisé par Abdelrahman et Thomas",20)
     title = Text(390,85,"JEU DE NIM",70,)
 
     menuArea = Area(350,75,550,550)

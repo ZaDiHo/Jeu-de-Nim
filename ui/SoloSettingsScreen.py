@@ -73,12 +73,6 @@ def showSoloSettingsScreen(screen):
         currentValue = int(numberOfMatches.text)
         if(currentValue < 50):
             numberOfMatches.setText(str(currentValue + 1))
-    
-    def nullEvent():
-        """
-        Fonction nulle
-        """
-        return None
 
     def removeMaxTakenMatchesButtonEvent():
         """
@@ -118,15 +112,15 @@ def showSoloSettingsScreen(screen):
     returnButton = Button(525, 565, "<", backButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     decreaseDifficulty = Button(780, 120, "-", decreaseDifficultyButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    difficulty = Button(905, 120, str(getDifficulty()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    difficulty = Button(905, 120, str(getDifficulty()), lambda: None, 95, 95, "#FDF7E4", "#FAEED1", 40)
     increaseDifficulty = Button(1035, 120, "+", increaseDifficultyButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     removeMatches = Button(780, 240, "-", removeMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    numberOfMatches = Button(905, 240, str(getMatches()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMatches = Button(905, 240, str(getMatches()), lambda: None, 95, 95, "#FDF7E4", "#FAEED1", 40)
     addMatches = Button(1035, 240, "+", addMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     removeMaxTakenMatches = Button(780, 365, "-", removeMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
-    numberOfMaxTeakeableMatches = Button(905, 365, str(getMaxNumberOfMatchesTakeable()), nullEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
+    numberOfMaxTeakeableMatches = Button(905, 365, str(getMaxNumberOfMatchesTakeable()), lambda: None, 95, 95, "#FDF7E4", "#FAEED1", 40)
     addMaxTakenMatches = Button(1035, 365, "+", addMaxTakenMatchesButtonEvent, 95, 95, "#FDF7E4", "#FAEED1", 40)
 
     # Ajout des éléments à l'écran

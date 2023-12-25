@@ -13,6 +13,7 @@ def showNameScreen(screen):
     # Importation de la fonction de manière locale pour éviter les dépendances circulaires
     from common.NimGame import Player
     from client.NimClient import openSession
+    from ui.OnlineScreen import showOnlineScreen
 
     # Nettoyer l'écran
     screen.clear_elements()
@@ -26,8 +27,9 @@ def showNameScreen(screen):
     inputArea = Area(400, 350, 500, 125, "#FDF7E4", "#FAEED1")
     inputShadow = Area(415, 450, 450, 5, "#FDF7E4", "#DED0B6")
     
-    text = Text(400, 250, "CHOIX PSEUDO", 40)
-    text = Text(100, 5, "TEST_PSEU", 60)
+    text = Text(400, 230, "CHOIX PSEUDO", 60)
+    pseudo = Text(100, 5, "TEST_PSEU", 60)
+    infoText = Text(490, 610, "", 20, (245, 66, 66))
 
     profil = Picture(10, 10, "./ressources/images/userIcon.png")
     profil.resize(75,75)
@@ -36,10 +38,14 @@ def showNameScreen(screen):
 
     # Définition des événements des boutons
     def handler_click_confirm():
-        text.setText(inputBox.get_text())
+        if(len(inputBox.get_text()) == 0):
+            infoText.setText("Veuillez entrer un pseudo !")
+            return
+        pseudo.setText(inputBox.get_text())
         player = Player(inputBox.get_text())
         client_socket = openSession()
         player.setClientSocket(client_socket)
+        showOnlineScreen(screen)
         
     # Création des boutons
     confirmButton = Button(400, 500, "VALIDER", handler_click_confirm, 500, 60, "#FDF7E4", "#FAEED1", 40)
@@ -49,25 +55,27 @@ def showNameScreen(screen):
     screen.add_element(area)
     screen.add_element(inputArea)
     screen.add_element(text)
+    screen.add_element(pseudo)
     screen.add_element(inputBox)
     screen.add_element(inputShadow)
     screen.add_element(profil)
     screen.add_element(confirmButton)
+    screen.add_element(infoText)
 
     # Boucle principale
     running = True
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT: # Si l'utilisateur ferme la fenêtre
                 running = False
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                inputBox.handle_event(event)  # Gérer l'événement de la zone de texte
-                confirmButton.handle_click()  # Gérer le clic sur le bouton
+            elif event.type == pygame.MOUSEBUTTONDOWN: # Si l'utilisateur clique
+                inputBox.handle_event(event)
+                if confirmButton.isMouseOver():
+                    confirmButton.handle_click()
+            elif event.type == pygame.KEYDOWN: # Si l'utilisateur tape
+                inputBox.handle_event(event)
 
-            elif event.type == pygame.KEYDOWN:
-                inputBox.handle_event(event)  # Gérer l'événement de la zone de texte
-
-    # Dessiner les éléments
+        # Dessiner les éléments
         screen.screen.fill((255, 255, 255))
         for element in screen.elements:
             element.draw(screen.screen)

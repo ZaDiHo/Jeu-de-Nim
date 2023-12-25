@@ -6,6 +6,9 @@
 
 import pygame
 
+def nullEvent():
+    return None
+
 class Screen:
     """
     Class permettant de créer des fenêtre pygame.
@@ -91,7 +94,7 @@ class Button:
     * isMouseOver: Renvoie True si la souris est sur le bouton
     * handle_click: Appelle la fonction click_handler si la souris est sur le bouton
     """
-    def __init__(self, x, y, text, click_handler, width=325, height=85, button_color="#FDF7E4", shadow_color="#FAEED1", font_size=45):
+    def __init__(self, x, y, text, click_handler=nullEvent, width=325, height=85, button_color="#FDF7E4", shadow_color="#FAEED1", font_size=45):
         """
         Initialise le bouton.
         """

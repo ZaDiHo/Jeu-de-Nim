@@ -44,12 +44,6 @@ def showMatchScreen(screen):
     mainArea = Area(40, 175, 1200, 500)
 
     # Définition des événements des boutons
-    def nullEvent():
-        """
-        Fonction nulle
-        """
-        return None
-
     def homeButtonEvent():
         """
         Retourne à l'écran d'accueil
@@ -111,8 +105,8 @@ def showMatchScreen(screen):
 
     # Création des boutons
     increaseButton = Button(740, 550, "+", addMaxTakenMatchesButtonEvent, 95, 95)
-    matchesValue = Button(600, 550, "1", nullEvent, 95, 95)
-    matchesNumber = Button(600, 325, str(getMatches()), nullEvent, 95, 95, "#DED0B6", "#DED0B6")
+    matchesValue = Button(600, 550, "1", lambda: None, 95, 95)
+    matchesNumber = Button(600, 325, str(getMatches()), lambda: None, 95, 95, "#DED0B6", "#DED0B6")
     decreaseButton = Button(450, 550, "-", removeMaxTakenMatchesButtonEvent, 95, 95)
     validateButton = Button(950, 550, "Valider", validateButtonEvent, 250, 85)
     returnButton = Button(75, 550, "Retour", backButtonEvent, 250, 85)
