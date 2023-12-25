@@ -4,45 +4,6 @@
 # Date dernière modification: 25/01/2021
 # Version: 1.5
 
-class Player:
-    """
-    Classe représentant un joueur.
-    
-    Paramètres:
-    * playerName: le nom du joueur
-    
-    Méthodes:
-    * getName(): retourne le nom du joueur
-    * setClientSocket(client_socket): définit le socket client du joueur
-    * sendPacket(packet): envoie un paquet du joueur au serveur
-    """
-    def __init__(self, playerName):
-        """
-        Créer le joueur
-        """
-        self.name = playerName
-
-    def getName(self):
-        """
-        Retourne le nom du joueur
-        """
-        return self.name
-    
-    def setClientSocket(self, client_socket):
-        """
-        Définit le socket client du joueur
-        """
-        self.client_socket = client_socket
-
-    def sendPacket(self, packet):
-        """
-        Envoie un paquet du joueur au serveur
-        """
-        if self.client_socket:
-            self.client_socket.send(packet.encode('utf-8'))
-        else:
-            print("Erreur : Le socket client n'est pas défini.")
-
 # Définition des variables globales
 matches = 16
 difficulty = 1

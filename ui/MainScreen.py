@@ -11,7 +11,6 @@ def showMainScreen(screen):
     Affiche l'écran principal
     """
     # Importation de la fonction de manière locale pour éviter les dépendances circulaires
-    from ui.NameScreen import showNameScreen
     from ui.SoloScreen import showSoloScreen
     from ui.LocalScreen import showLocalScreen
     from common.NimGame import setMode
@@ -44,17 +43,17 @@ def showMainScreen(screen):
         setMode(2)
         showLocalScreen(screen)
 
-    def onlineButtonEvent():
+    def quitButtonEvent():
         """
         Affiche l'écran de jeu en ligne
         """
         setMode(3)
-        showNameScreen(screen)
+        pygame.quit()
 
     # Création des boutons
     soloButton = Button(410,190,"Solo",soloButtonEvent,425,105)
     localButton = Button(410,325,"Local",localButtonEvent,425,105)
-    onlineButton = Button(410,460,"En ligne",onlineButtonEvent,425,105)
+    quitButton = Button(410,460,"Quitter",quitButtonEvent,425,105)
 
     # Ajout des éléments à l'écran
     screen.add_element(background)
@@ -62,7 +61,7 @@ def showMainScreen(screen):
     screen.add_element(menuArea)
     screen.add_element(soloButton)
     screen.add_element(localButton)
-    screen.add_element(onlineButton)
+    screen.add_element(quitButton)
     screen.add_element(title)
 
     # Lancer la fenêtre
