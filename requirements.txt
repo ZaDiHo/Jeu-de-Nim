@@ -1,2 +1,8 @@
+#################################################################
+#        COMMANDES A INSTALLER POUR UTILISER LE CODE !          #
+#################################################################
+
+# VOUS AVEZ BESOIN DE PIP POUR INSTALLER LES DEPENDANCES
+# PIP EST INCLUS DANS PYTHON 3.4 ET PLUS
+
 pip install pygame
-pip install python-dotenv

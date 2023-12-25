@@ -1,3 +1,9 @@
+# Nom du fichier: ScreenUtil.py
+# Auteur: Thomas PROVOST
+# Objectif: Utilitaire pour créer des fenêtres Pygame
+# Date dernière modification: 25/01/2021
+# Version: 1.3
+
 import pygame
 
 class Screen:
@@ -301,7 +307,30 @@ class Picture:
         self.image = pygame.transform.scale(self.image, (width, height))
 
 class InputBox:
+    """
+    Class permettant de créer des zones de texte pour une fenêtre Pygame.
+    
+    Paramètres:
+    * x: Position x de la zone de texte
+    * y: Position y de la zone de texte
+    * width: Largeur de la zone de texte
+    * height: Hauteur de la zone de texte
+    * font_size: Taille de la police du texte (défaut 30px)
+    * text_color: Couleur du texte (défaut #000000)
+    * border_color: Couleur de la bordure de la zone de texte (défaut #FDF7E4)
+    
+    Méthodes:
+    * set_text: Change le texte de la zone de texte
+    * handle_event: Gère les événements de la zone de texte
+    * draw: Dessine la zone de texte
+    * get_text: Renvoie le texte contenu dans la zone de texte
+    * is_empty: Renvoie True si la zone de texte est vide
+    * contains_special_characters: Renvoie True si la zone de texte contient des caractères spéciaux
+    """
     def __init__(self, x, y, width, height, font_size=30, text_color=(0, 0, 0), border_color=(253, 247, 228)):
+        """
+        Initialise la zone de texte.
+        """
         self.rect = pygame.Rect(x, y, width, height)
         self.font = pygame.font.Font(None, font_size)
         self.text_color = text_color
@@ -311,9 +340,15 @@ class InputBox:
         self.max_length = 12  # Longueur maximale du texte
 
     def set_text(self, text):
+        """
+        Change le texte de la zone de texte.
+        """
         self.text = text
 
     def handle_event(self, event):
+        """
+        Gère les événements de la zone de texte.
+        """
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.rect.collidepoint(event.pos):
                 self.active = not self.active
@@ -331,6 +366,9 @@ class InputBox:
                         self.text += event.unicode
 
     def draw(self, screen):
+        """
+        Dessine la zone de texte.
+        """
         pygame.draw.rect(screen, self.border_color, self.rect, 2)
         font_surface = self.font.render(self.text, True, self.text_color)
         width = max(self.rect.width, font_surface.get_width() + 10)
@@ -339,10 +377,19 @@ class InputBox:
         pygame.draw.rect(screen, self.border_color, input_box_rect, 2)
 
     def get_text(self):
+        """
+        Renvoie le texte contenu dans la zone de texte.
+        """
         return self.text
 
     def is_empty(self):
+        """
+        Renvoie True si la zone de texte est vide.
+        """
         return len(self.text) == 0
 
     def contains_special_characters(self):
+        """
+        Renvoie True si la zone de texte contient des caractères spéciaux.
+        """
         return any(char.isalnum() or char == '_' for char in self.text)
