@@ -47,8 +47,7 @@ def showMainScreen(screen):
         """
         Affiche l'écran de jeu en ligne
         """
-        setMode(3)
-        pygame.quit()
+        exit()
 
     # Création des boutons
     soloButton = Button(410,190,"Solo",soloButtonEvent,425,105)
