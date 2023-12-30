@@ -12,8 +12,9 @@ def showSoloScreen(screen):
     Affiche l'écran de jeu solo
     """
     # Importation de la fonction de manière locale pour éviter les dépendances circulaires
-    from ui.MainScreen import showMainScreen, showMatchScreen
+    from ui.MainScreen import showMainScreen
     from ui.SoloSettingsScreen import showSoloSettingsScreen
+    from ui.MatchScreen import showMatchScreen
 
     # Nettoyer l'écran
     screen.clear_elements()
