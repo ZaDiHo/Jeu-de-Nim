@@ -15,10 +15,7 @@ def showLocalSettingsScreen(screen):
     """
     # Import des fonctions de manière locale pour éviter les dépendances circulaires
     from ui.LocalScreen import showLocalScreen
-    from common.NimGame import getMaxNumberOfMatchesTakeable
-    from common.NimGame import getMatches
-    from common.NimGame import setMaxNumberOfMatchesTakeable
-    from common.NimGame import setMatches
+    from common.NimGame import getMaxNumberOfMatchesTakeable, setMaxNumberOfMatchesTakeable, getMatches, setMatches
 
     # Nettoyer l'écran
     screen.clear_elements()

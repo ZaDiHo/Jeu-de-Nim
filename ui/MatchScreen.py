@@ -12,15 +12,8 @@ def showMatchScreen(screen):
     Affiche l'écran de jeu
     """
     # Importation de la fonction de manière locale pour éviter les dépendances circulaires
-    from common.NimGame import getMaxNumberOfMatchesTakeable
-    from common.NimGame import getMatches
-    from common.NimGame import setMatches
-    from common.NimGame import getDifficulty
-    from common.NimGame import getMode
-    from common.NimGame import getFirstPlayerName
-    from common.NimGame import getSecondPlayerName
+    from common.NimGame import getMaxNumberOfMatchesTakeable, getMatches, setMatches, getDifficulty, getMode, getFirstPlayerName, getSecondPlayerName, initValues
     from ui.MainScreen import showMainScreen
-    from common.NimGame import initValues
 
     # Nettoyer l'écran
     screen.clear_elements()

@@ -13,12 +13,7 @@ def showSoloSettingsScreen(screen):
     """
     # Importation de la fonction de manière locale pour éviter les dépendances circulaires
     from ui.SoloScreen import showSoloScreen
-    from common.NimGame import setMatches
-    from common.NimGame import setMaxNumberOfMatchesTakeable
-    from common.NimGame import setDifficulty
-    from common.NimGame import getDifficulty
-    from common.NimGame import getMatches
-    from common.NimGame import getMaxNumberOfMatchesTakeable
+    from common.NimGame import setMatches, setMaxNumberOfMatchesTakeable, setDifficulty, getDifficulty, getMatches, getMaxNumberOfMatchesTakeable
 
     # Nettoyer l'écran
     screen.clear_elements()

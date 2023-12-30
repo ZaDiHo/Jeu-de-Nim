@@ -16,12 +16,9 @@ def showLocalScreen(screen):
     """
     # Import des fonctions de manière locale pour éviter les dépendances circulaires
     from ui.MainScreen import showMainScreen
-    from ui.LocalSettingsScreen import showLocalSettingsScreen
-    from common.NimGame import getFirstPlayerName
-    from common.NimGame import getSecondPlayerName
-    from common.NimGame import setFirstPlayerName
-    from common.NimGame import setSecondPlayerName
     from ui.MatchScreen import showMatchScreen
+    from ui.LocalSettingsScreen import showLocalSettingsScreen
+    from common.NimGame import getFirstPlayerName, getSecondPlayerName, setFirstPlayerName, setSecondPlayerName
 
     # Nettoyer l'écran
     screen.clear_elements()
