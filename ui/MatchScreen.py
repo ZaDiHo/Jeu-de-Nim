@@ -39,6 +39,9 @@ def showMatchScreen(screen):
     matchesText = Text(0, 350, "", 90)
 
     def updateMatchesLocation():
+        """
+        Fonction pour mettre à jour les allumettes
+        """
         matchesText.text = ""
         for _ in range(getMatches()):
             matchesText.text += "|"
@@ -68,7 +71,7 @@ def showMatchScreen(screen):
         Valide le nombre d'allumettes à prendre
         """
         nonlocal current_turn
-        if(getMode() == 1):
+        if(getMode() == 1): # Mode solo
             if title.text == "A Votre Tour !":
                 playerMatchesTaken = int(matchesValue.text)
                 setMatches(getMatches() - playerMatchesTaken)
@@ -77,7 +80,8 @@ def showMatchScreen(screen):
                 checkGameResult()
                 current_turn = 1 # Changer le tour après que le joueur a joué
                 botTurn()
-        elif(getMode() == 2):
+
+        elif(getMode() == 2): # Mode local
             playerMatchesTaken = int(matchesValue.text)
             setMatches(getMatches() - playerMatchesTaken)
             matchesNumber.text = "Allumettes restantes : " + str(getMatches())
@@ -174,8 +178,9 @@ def showMatchScreen(screen):
         Tour de l'IA
         """
         nonlocal current_turn
+
         if getMode() == 1:
-            if getDifficulty() == 1:  # Easy mode
+            if getDifficulty() == 1:  # Mode facile - Forte probabilité de gagner
                 if getMatches() > 0:
                     matchesTaken = min(random.randint(1, getMaxNumberOfMatchesTakeable()), getMatches())
                     setMatches(getMatches() - matchesTaken)
@@ -183,7 +188,7 @@ def showMatchScreen(screen):
                     checkGameResult()
                     current_turn = 0  # Changer le tour après que l'IA a joué
 
-            elif getDifficulty() == 2:  # Medium mode
+            elif getDifficulty() == 2:  # Mode moyen - Probabilité moyenne de gagner
                 if getMatches() > 0:
                     if getMatches() - getMaxNumberOfMatchesTakeable() == 1:
                         matchesTaken = getMaxNumberOfMatchesTakeable()
@@ -192,26 +197,20 @@ def showMatchScreen(screen):
                         if random.random() < 0.7:  # 70% de chances de jouer de manière aléatoire
                             matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
                         else:
-                            # Vérifier s'il peut laisser une allumette à l'adversaire
-                            if getMatches() % (getMaxNumberOfMatchesTakeable() + 1) == 1:
-                                matchesTaken = 1
+                            # Calculer le nim-sum
+                            nim_sum = calculateNimSum()
+                            # Si le nim-sum est non nul, jouer de manière intelligente
+                            if nim_sum != 0:
+                                matchesTaken = getMatches() % (getMaxNumberOfMatchesTakeable() + 1)
                             else:
-                                # Calculer le nim-sum
-                                nim_sum = calculateNimSum()
-
-                                # Si le nim-sum est non nul, jouer de manière intelligente
-                                if nim_sum != 0:
-                                    matchesTaken = getMatches() % (getMaxNumberOfMatchesTakeable() + 1)
-                                else:
-                                    # Sinon, jouer de manière aléatoire
-                                    matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
-
+                                # Sinon, jouer de manière aléatoire
+                                matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = "Allumettes restantes : " + str(getMatches())
                     checkGameResult()
                     current_turn = 0  # Changer le tour après que l'IA a joué
 
-            else:  # Hard mode
+            else:  # Mode difficile - Probabilité faible de gagner
                 if getMatches() > 0:
                     if getMatches() - getMaxNumberOfMatchesTakeable() == 1:
                         matchesTaken = getMaxNumberOfMatchesTakeable()
@@ -220,15 +219,10 @@ def showMatchScreen(screen):
                             matchesTaken = 1
                         else:
                             matchesTaken = getMatches() % (getMaxNumberOfMatchesTakeable() + 1)
-
                             # Si nim-sum est 0, jouer de manière aléatoire
                             if calculateNimSum() == 0:
                                 matchesTaken = random.randint(1, min(getMatches(), getMaxNumberOfMatchesTakeable()))
-
                     setMatches(getMatches() - matchesTaken)
-                    matchesNumber.text = "Allumettes restantes : " + str(getMatches())
-                    checkGameResult()
-                    current_turn = 0
 
             updateMatchesLocation()
 
