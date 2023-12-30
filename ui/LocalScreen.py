@@ -1,5 +1,5 @@
 # Nom du fichier: LocalScreen.py
-# Auteur: Abdelrahman AL KHATIB
+# Auteur(s): Abdelrahman AL KHATIB
 # Objectif: Ecran du jeu local
 # Date dernière modification: 25/01/2021
 # Version: 1.1

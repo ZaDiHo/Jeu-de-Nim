@@ -1,5 +1,5 @@
 # Nom du fichier: main.py
-# Auteur: Abdelrahman AL KHATIB
+# Auteur: Abdelrahman AL KHATIB, Thomas PROVOST
 # Objectif: Fichier principal du jeu
 # Date dernière modification: 25/01/2021
 # Version: 1.1

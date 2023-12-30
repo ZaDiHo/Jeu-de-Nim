@@ -1,5 +1,5 @@
 # Nom du fichier: NimGame.py
-# Auteur: Abdelrahman AL KHATIB, Thomas PROVOST
+# Auteur(s): Abdelrahman AL KHATIB, Thomas PROVOST
 # Objectif: Classe de gestion des parties et ses paramètres
 # Date dernière modification: 25/01/2021
 # Version: 1.5

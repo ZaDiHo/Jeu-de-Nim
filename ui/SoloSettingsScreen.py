@@ -1,5 +1,5 @@
 # Nom du fichier: SoloSettingsScreen.py
-# Auteur: Abdelrahman AL KHATIB
+# Auteur(s): Abdelrahman AL KHATIB
 # Objectif: Ecran des paramètres du mode solo
 # Date dernière modification: 25/01/2021
 # Version: 1.3

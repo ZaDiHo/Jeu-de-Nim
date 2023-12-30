@@ -1,5 +1,5 @@
 # Nom du fichier: LocalSettingsScreen.py
-# Auteur: Abdelrahman AL KHATIB
+# Auteur(s): Abdelrahman AL KHATIB
 # Objectif: Ecran des paramètres du jeu local
 # Date dernière modification: 25/01/2021
 # Version: 1.2

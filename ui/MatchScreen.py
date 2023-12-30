@@ -1,5 +1,5 @@
 # Nom du fichier: MatchScreen.py
-# Auteur: Abdelrahman AL KHATIB, Thomas PROVOST
+# Auteur(s): Abdelrahman AL KHATIB, Thomas PROVOST
 # Objectif: Ecran du jeu
 # Date dernière modification: 26/01/2021
 # Version: 1.13
@@ -75,7 +75,7 @@ def showMatchScreen(screen):
                 matchesNumber.text = "Allumettes restantes : " + str(getMatches())
                 matchesValue.text = "1"
                 checkGameResult()
-                current_turn = 2 # Changer le tour après que le joueur a joué
+                current_turn = 1 # Changer le tour après que le joueur a joué
                 botTurn()
         elif(getMode() == 2):
             playerMatchesTaken = int(matchesValue.text)
@@ -142,7 +142,7 @@ def showMatchScreen(screen):
             screen.add_element(menuArea)
             screen.add_element(accueil)
             if getMode() == 1:
-                if current_turn == 0:
+                if current_turn == 1:
                     winText = Text(515, 35, "Gagné ! :D", 50)
                     screen.add_element(winText)
                 else:
@@ -181,7 +181,7 @@ def showMatchScreen(screen):
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = "Allumettes restantes : " + str(getMatches())
                     checkGameResult()
-                    current_turn = 1  # Changer le tour après que l'IA a joué
+                    current_turn = 0  # Changer le tour après que l'IA a joué
 
             elif getDifficulty() == 2:  # Medium mode
                 if getMatches() > 0:
@@ -209,7 +209,7 @@ def showMatchScreen(screen):
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = "Allumettes restantes : " + str(getMatches())
                     checkGameResult()
-                    current_turn = 1  # Changer le tour après que l'IA a joué
+                    current_turn = 0  # Changer le tour après que l'IA a joué
 
             else:  # Hard mode
                 if getMatches() > 0:
@@ -228,7 +228,7 @@ def showMatchScreen(screen):
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = "Allumettes restantes : " + str(getMatches())
                     checkGameResult()
-                    current_turn = 1
+                    current_turn = 0
 
             updateMatchesLocation()
 

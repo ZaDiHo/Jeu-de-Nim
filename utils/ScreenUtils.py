@@ -1,5 +1,5 @@
 # Nom du fichier: ScreenUtil.py
-# Auteur: Thomas PROVOST
+# Auteur(s): Thomas PROVOST
 # Objectif: Utilitaire pour créer des fenêtres Pygame
 # Date dernière modification: 25/01/2021
 # Version: 1.3

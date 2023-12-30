@@ -1,5 +1,5 @@
 # Nom du fichier: MainScreen.py
-# Auteur: Abdelrahman AL KHATIB
+# Auteur(s): Abdelrahman AL KHATIB, Thomas PROVOST
 # Objectif: Ecran d'accueil
 # Date dernière modification: 25/01/2021
 # Version: 1.3
