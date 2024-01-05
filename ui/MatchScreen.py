@@ -171,8 +171,6 @@ def showMatchScreen(screen):
         else:
             return matches % (max_takeable + 1)
 
-
-
     def botTurn():
         """
         Tour de l'IA
@@ -190,10 +188,15 @@ def showMatchScreen(screen):
 
             elif getDifficulty() == 2:  # Mode moyen - Probabilité moyenne de gagner
                 if getMatches() > 0:
-                    if getMatches() - getMaxNumberOfMatchesTakeable() == 1:
-                        matchesTaken = getMaxNumberOfMatchesTakeable()
-                    else:
-                        # Utiliser une approche probabiliste
+                    found_valid_move = False # Variable pour vérifier si un coup valide a été trouvé pour laisser 1 allumette à l'adversaire
+                    for i in range(1, getMaxNumberOfMatchesTakeable() + 1):
+                        if (getMatches() - i == 1):
+                            matchesTaken = i
+                            found_valid_move = True
+                            break
+
+                    if not found_valid_move: # Impossible de faire en sorte de laisser 1 allumette à l'adversaire
+                        # Utilisation d'une approche probabiliste
                         if random.random() < 0.7:  # 70% de chances de jouer de manière aléatoire
                             matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
                         else:
@@ -205,6 +208,7 @@ def showMatchScreen(screen):
                             else:
                                 # Sinon, jouer de manière aléatoire
                                 matchesTaken = min(random.randint(1, getMatches()), getMaxNumberOfMatchesTakeable())
+
                     setMatches(getMatches() - matchesTaken)
                     matchesNumber.text = "Allumettes restantes : " + str(getMatches())
                     checkGameResult()
@@ -212,9 +216,13 @@ def showMatchScreen(screen):
 
             else:  # Mode difficile - Probabilité faible de gagner
                 if getMatches() > 0:
-                    if getMatches() - getMaxNumberOfMatchesTakeable() == 1:
-                        matchesTaken = getMaxNumberOfMatchesTakeable()
-                    else:
+                    found_valid_move = False # Variable pour vérifier si un coup valide a été trouvé pour laisser 1 allumette à l'adversaire
+                    for i in range(1, getMaxNumberOfMatchesTakeable() + 1):
+                        if (getMatches() - i == 1):
+                            matchesTaken = i
+                            found_valid_move = True
+                            break
+                    if not found_valid_move: # Impossible de faire en sorte de laisser 1 allumette à l'adversaire
                         if getMatches() == 1:
                             matchesTaken = 1
                         else:
@@ -223,6 +231,9 @@ def showMatchScreen(screen):
                             if calculateNimSum() == 0:
                                 matchesTaken = random.randint(1, min(getMatches(), getMaxNumberOfMatchesTakeable()))
                     setMatches(getMatches() - matchesTaken)
+                    matchesNumber.text = "Allumettes restantes : " + str(getMatches())
+                    checkGameResult()
+                    current_turn = 0  # Changer le tour après que l'IA a joué
 
             updateMatchesLocation()
 
