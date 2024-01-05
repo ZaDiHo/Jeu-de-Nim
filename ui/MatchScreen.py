@@ -79,7 +79,7 @@ def showMatchScreen(screen):
                 matchesValue.text = "1"
                 checkGameResult()
                 current_turn = 1 # Changer le tour après que le joueur a joué
-                botTurn()
+                botTurn() #Tour de l'IA
 
         elif(getMode() == 2): # Mode local
             playerMatchesTaken = int(matchesValue.text)
@@ -88,11 +88,11 @@ def showMatchScreen(screen):
             matchesValue.text = "1"
             if(current_turn == 1):
                 title.text = ("Au tour de " + getSecondPlayerName())
-                checkGameResult()
+                checkGameResult() # Vérifier si la partie est terminée
                 current_turn = 0
             else:
                 title.text = ("Au tour de " + getFirstPlayerName())
-                checkGameResult()
+                checkGameResult() # Vérifier si la partie est terminée
                 current_turn = 1
         updateMatchesLocation()
             
